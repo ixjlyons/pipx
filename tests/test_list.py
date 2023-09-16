@@ -144,3 +144,15 @@ def test_list_short(pipx_temp_env, monkeypatch, capsys):
 
     assert "pycowsay 0.0.0.1" in captured.out
     assert "pylint 2.3.1" in captured.out
+
+
+def test_list_injected(pipx_temp_env, monkeypatch, capsys):
+    assert not run_pipx_cli(["install", PKG["pycowsay"]["spec"]])
+    assert not run_pipx_cli(["inject", "pycowsay", PKG["pylint"]["spec"]])
+    captured = capsys.readouterr()
+
+    assert not run_pipx_cli(["list", "--include-injected"])
+    captured = capsys.readouterr()
+
+    for appname in PKG["pylint"]["apps"]:
+        assert appname in captured.out

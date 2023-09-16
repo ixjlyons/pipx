@@ -15,6 +15,7 @@
 - Add `pipx install --preinstall` to support preinstalling build requirements
 - Pass `--no-input` to pip when output is not piped to parent stdout
 - Fix program name in generated manual page
+- List injected apps with `list --include-injected`
 
 ## 1.2.0
 

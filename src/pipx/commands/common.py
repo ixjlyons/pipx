@@ -303,8 +303,10 @@ def _get_list_output(
         )
     if injected_packages:
         output.append("    Injected Packages:")
-        for name in injected_packages:
+        for name, info in injected_packages.items():
             output.append(f"      - {name} {injected_packages[name].package_version}")
+            for appname in info.apps:
+                output.append(f"        - {appname}")
     return "\n".join(output)
 
 
